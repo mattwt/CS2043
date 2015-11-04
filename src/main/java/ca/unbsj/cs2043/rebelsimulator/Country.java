@@ -33,6 +33,11 @@ public class Country {
 	}
 	
 	public void init() {
+		double suppChance = 0.5*gov.ideo.getMili();
+		
+		if (Math.random() > suppChance)
+			suppress();
+		
 		//gov.init();
 		//pop.init();
 		//other shit
@@ -41,5 +46,14 @@ public class Country {
 	public void tick() {
 		//recalc revolt and call pops/gov recalc
 	}
+	
+
+	public void suppress() {
+		//needs tweaking
+		//double s = 0;
+		double left = pop.ideo.getRight();
+		//suppression = suppression + 0.3*(Math.pow(gov.ideo.getMili(), 2)*(govActions) + 0.1*left;
+	}
+	
 	
 }

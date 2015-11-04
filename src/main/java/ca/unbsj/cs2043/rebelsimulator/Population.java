@@ -38,6 +38,7 @@ public class Population {
 			}
 		}
 		
+		
 		//calcSupport();
 		//calcRevolt();
 		
@@ -45,18 +46,12 @@ public class Population {
 	
 	public void calcSupport() {
 		double df = ideo.diff(gov.ideo);
-		calcSupression();
 		support = support - 0.1*(df + 0.1*richPoor) + suppression;
 		
 	}
 	
 	public void calcRevolt() {
 		
-	}
-	
-	public void calcSupression() {
-		//needs tweaking
-		//suppression = suppression + 0.2*(Math.pow(gov.ideo.mili, 2)*(govActions) + pop.ideo.right;
 	}
 	
 	public double getRevolt() {return revolt;}

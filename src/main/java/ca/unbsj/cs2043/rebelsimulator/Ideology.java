@@ -103,4 +103,9 @@ public class Ideology {
 		double d = Math.abs(trad - i.trad);
 		return a+b+c+d;
 	}
+	
+	public double getMili() {return mili;}
+	public double getRight() {return right;}
+	public double getTrad() {return trad;}
+	public double getAuth() {return auth;}
 }
