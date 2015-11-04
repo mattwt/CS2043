@@ -103,5 +103,4 @@ public class Ideology {
 		double d = Math.abs(trad - i.trad);
 		return a+b+c+d;
 	}
-	
 }

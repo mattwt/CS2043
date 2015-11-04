@@ -15,14 +15,14 @@ public class Population {
 	Country con;
 	Ideology ideo;
 	String name;
-	double baseRevolt, revolt, popAmt, richPoor, support;
+	double baseRevolt, revolt, popAmt, richPoor, support, suppression;
 	boolean inRevolt = false;
 	boolean isSuppressed = false;
 	
 	public Population(Ideology i, Government g, Country c, String n, 
-			double br, double r, double pa, double ly, double s, double rp) {
+			double br, double r, double pa, double ly, double s, double rp, double su) {
 		ideo = i; gov = g; con = c; 
-		name = n; baseRevolt = br; popAmt = pa; richPoor = rp;	//seperate calc for these??
+		name = n; baseRevolt = br; popAmt = pa; richPoor = rp; suppression = su;
 		//calc(r);
 	}
 	
@@ -45,12 +45,18 @@ public class Population {
 	
 	public void calcSupport() {
 		double df = ideo.diff(gov.ideo);
-		support = df + richPoor;
+		calcSupression();
+		support = support - 0.1*(df + 0.1*richPoor) + suppression;
 		
 	}
 	
 	public void calcRevolt() {
 		
+	}
+	
+	public void calcSupression() {
+		//needs tweaking
+		//suppression = suppression + 0.2*(Math.pow(gov.ideo.mili, 2)*(govActions) + pop.ideo.right;
 	}
 	
 	public double getRevolt() {return revolt;}
