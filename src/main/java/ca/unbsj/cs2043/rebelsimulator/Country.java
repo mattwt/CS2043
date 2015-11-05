@@ -43,6 +43,12 @@ public class Country {
 		//other shit
 	}
 	
+	public void dummy() {
+		for (int i = 0; i < 2; i++) {
+			int t = 1 + 1;
+		}
+	}
+	
 	public void tick() {
 		//recalc revolt and call pops/gov recalc
 	}
