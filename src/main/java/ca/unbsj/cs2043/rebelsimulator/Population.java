@@ -28,12 +28,12 @@ public class Population {
 	
 	public void calc(double rev) {
 		if (!inRevolt && revolt > 0.5) {
-			if ((Math.pow(revolt * Math.random(), 4)) > revolt) {
+			if ((Math.random() > Math.pow(revolt, 2))) {
 				inRevolt = true;
 			}
 		}
 		else if (inRevolt) {	//50% chance of ending every tick
-			if ((Math.random() > 0.75)) {
+			if ((Math.random() > 0.5)) {
 				inRevolt = false;
 			}
 		}
@@ -45,9 +45,8 @@ public class Population {
 	}
 	
 	public void calcSupport() {
-		double df = ideo.diff(gov.ideo);
-		support = support - 0.1*(df + 0.1*richPoor) + suppression;
-		
+		double df = ideo.diff(gov.ideo);	//difference between ideologies
+		support = support - 0.1*(df + 0.1*richPoor) + suppression;	//calc support here
 	}
 	
 	public void calcRevolt() {
@@ -57,5 +56,5 @@ public class Population {
 	public double getRevolt() {return revolt;}
 	
 	public double getSupport() {return support;}
-		
+	
 }
