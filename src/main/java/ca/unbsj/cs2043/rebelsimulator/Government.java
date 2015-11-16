@@ -14,6 +14,7 @@ public class Government {
 	Ideology ideo;
 	String name;
 	double support;
+	long money;
 	int ID;
 	
 	public Government(Ideology d, String n, int id) {
