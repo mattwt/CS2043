@@ -20,6 +20,8 @@ public class TechTree {
 			String[] pflavor = new String[flavorLength];
 			double[] tmods = new double[flavorLength];
 			double[] pmods = new double[flavorLength];
+			double tspec = 0.0;
+			double pspec = 0.0;
 			Boolean hasNext = true;
 			
 			int i = 0, n = 0;
@@ -43,10 +45,14 @@ public class TechTree {
 						tmods[i-1] = Double.parseDouble(tline.substring(tsemicolon+1, tline.length()-1));
 						pmods[i-1] = Double.parseDouble(pline.substring(tsemicolon+1, pline.length()-1));
 					}
+					else if (i > flavorLength + 1) {
+						tspec = Double.parseDouble(tline);
+						pspec = Double.parseDouble(pline);
+					}
 					else {
 						//call tech/policy constructors with the extracted data
-						techs[n] = new Tech(tname, tflavor, tmods);
-						policies[n] = new Tech(pname, pflavor, pmods);
+						techs[n] = new Tech(tname, tflavor, tmods, tspec);
+						policies[n] = new Tech(pname, pflavor, pmods, pspec);
 						i = 0;
 						n++;
 					}
