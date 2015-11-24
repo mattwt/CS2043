@@ -21,12 +21,12 @@ public class Country {
 	Population pop;
 	String name;
 	double baseRevolt, revolt, sizeMod, tech;
-	int ID, troops;	//troops measured in thousands
+	int troops;	//troops measured in thousands
 	
-	public Country(String n, double BR, double size, double tc, int tr, int d, Government g, Population p) {
+	public Country(String n, double BR, double size, double tc, int tr, Government g, Population p) {
 		name = n;
 		baseRevolt = BR; sizeMod = size; tech = tc;
-		ID = d; troops = tr;
+		troops = tr;
 		gov = g;
 		pop = p;
 		init();
