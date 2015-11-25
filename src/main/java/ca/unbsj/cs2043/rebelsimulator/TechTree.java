@@ -70,6 +70,9 @@ public class TechTree {
 		catch (FileNotFoundException e) {
 			System.err.println("File naming probs");
 		}
+		catch (IOException e) {
+			System.err.println("IO failiure");
+		}
 		catch (Exception e) {
 			System.err.println("Unknown fuckup");
 		}

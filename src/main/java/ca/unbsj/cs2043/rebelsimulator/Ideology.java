@@ -20,7 +20,6 @@ public class Ideology {
 	double right;	//right (pos) vs left (neg)
 	double mili;	//militarist (pos) vs pacifist (neg)
 	double trad;	//traditional (pos) vs modernist (neg)
-	int ID;
 	
 	Ideology(int ide, String uName, double a, double r, double m, double t) {
 		switch (ide) {
