@@ -39,13 +39,18 @@ public class CountryList implements Iterable<Country> {
 					}
 					if (onParam) {
 						if (line.matches("(.*)(;)")) {
+							
 							//logic to assign params here
+							
 							curParam++;
 						}
 						else if (line.matches("}")) {
 							onParam = false;
 							cNum++;
 							curParam = 0;
+							
+							//do construction here
+							
 						}
 						else {
 							throw new IOException();
@@ -64,6 +69,21 @@ public class CountryList implements Iterable<Country> {
 	
 	public Iterator<Country> iterator() {
 		return new CountryIterator();
+	}
+	
+	//Debugging to check country names
+	@Override
+	public String toString() {
+		String ret = "";
+		for (int i = 0; i < cList.length; i++) {
+			if (i == 0) {
+				ret += cList[i].name;
+			}
+			else {
+				ret += ", " + cList[i].name;
+			}
+		}
+		return ret;
 	}
 	
 	class CountryIterator implements Iterator<Country>  {
