@@ -17,20 +17,20 @@ public class Country {
 	Population pop;
 	String name;
 	double density;
+	boolean owned;
 	//troops, size, and pop in thousands
 	int troops, population, size, techLevel;
 	
-	public Country(String n, int soldiers, int s, int p, int t) {
-		name = n;
-		density = p / s;
+	public Country(String n, int soldiers, int s, int p, int t, 
+			int id, String un, String nm, Government g, Population po) {
+		name = nm;
+		density = ((double) p) / s; 
 		population = p;
 		size = s;
 		troops = soldiers;
 		techLevel = t;
-		
-		//government and pop constructors here
-		
-		init();
+		pop = po;
+		gov = g;
 	}
 	
 	public void init() {

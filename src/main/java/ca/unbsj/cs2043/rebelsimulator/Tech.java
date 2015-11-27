@@ -9,16 +9,20 @@ public class Tech {
 	double currentMod;
 	double specialMod;
 	int level;
+	long[] costarr;
+	long cost;
 	String[] flavor;
 	boolean max = false;
 	
-	public Tech(String n, String[] fla, double[] mods, double spec) {
+	public Tech(String n, String[] fla, double[] mods, double spec, long[] c) {
 		name = n;
 		flavor = Arrays.copyOf(fla, fla.length);
 		modifiers = Arrays.copyOf(mods, mods.length);
 		specialMod = spec;
 		level = 0;
 		currentMod = modifiers[level];
+		costarr = c;
+		cost = costarr[0];
 	}
 	
 	//return false if at max level, 
@@ -34,11 +38,15 @@ public class Tech {
 			
 			currentMod = modifiers[level];
 			
+			cost = costarr[level];
+			
 			return true;
 		}
 	}
 	
 	public int getLevel() {return level;}
+	
+	public long getCost() {return cost;}
 	
 	public double getModifier() {return currentMod;}
 	
