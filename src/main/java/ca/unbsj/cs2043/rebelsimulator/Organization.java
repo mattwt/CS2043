@@ -12,24 +12,47 @@ package ca.unbsj.cs2043.rebelsimulator;
 public class Organization {
 	
 	Ideology ideo;
-	Country[] owned = new Country[20];
 	TechTree techTree = new TechTree(5);
 	String name;
 	long money;
 	int ID;
 	
-	public Organization(Ideology i, Country c, String n, long m, int cid) {
+	public Organization(Ideology i, String n, long m, int cid) {
 		ideo = i;
-		owned[0] = c;
 		name = n;
 		money = m;
 		ID = cid;
 	}
 	
-	/*
-	public 
+	public boolean upgradeTech(int id) {
+		boolean success = (techTree.upgradeTech(id) && canBuy(techTree.getTechCost(id)));
+		
+		if (success) {
+			money -= techTree.getTechCost(id);
+		}
+		
+		
+		return success;
+	}
 	
+	public boolean upgradePolicy(int id) {
+		boolean success = (techTree.upgradePolicy(id) && canBuy(techTree.getPolicyCost(id)));
+		
+		if (success) {
+			money -= techTree.getPolicyCost(id);
+		}
+		
+		return success;
+	}
 	
-	*/
+	public boolean canBuy(long cost) {
+		if (money > cost) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	
 }
