@@ -41,7 +41,7 @@ public class Ideology {
 				break;
 			case 2: name = "National Socialist";
 				shName = "nasoc";
-				//fascist
+				//Fascist
 				auth = 0.93;
 				right = 0.7;
 				mili = 0.92;

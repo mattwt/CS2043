@@ -15,13 +15,11 @@ public class Organization {
 	TechTree techTree = new TechTree(5);
 	String name;
 	long money;
-	int ID;
 	
-	public Organization(Ideology i, String n, long m, int cid) {
+	public Organization(Ideology i, String n, long m) {
 		ideo = i;
 		name = n;
 		money = m;
-		ID = cid;
 	}
 	
 	public boolean upgradeTech(int id) {
