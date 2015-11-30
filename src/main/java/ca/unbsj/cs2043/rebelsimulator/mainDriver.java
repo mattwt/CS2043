@@ -19,10 +19,14 @@ public class mainDriver {
 	 */
 	public static void main(String[] args) {
 		
-		// Temp and reader vars
+		// Temps, readers, and counters
 		Scanner scan = new Scanner(System.in);
 		String temp = "";
+		String[] userParams = new String[20];
+		String turnLabel, monthName, year;
+		int turnCounter = 0, month = 0;
 		boolean valid1 = false, valid2 = false;
+		boolean cycle = true;
 		
 		// Organization vars
 		double a = 0.0, r = 0.0, m = 0.0, t = 0.0;
@@ -30,6 +34,10 @@ public class mainDriver {
 		int orgIdeoClass = -1;
 		String orgName = "";
 		Organization playerOrg;
+		
+		// Country(List) vars
+		String startCountryName;
+		CountryList countryList = new CountryList(6);	// CHANGE 6 TO MORE APPROPRIATE VAL LATER
 		
 		// Gathering info to make the organization
 		System.out.print("What is your organization's name?/n > ");
@@ -91,12 +99,24 @@ public class mainDriver {
 			}
 		}
 		
+		valid1 = false; valid2 = false; //reset temps
+		
 		// build country list here
 		
-		System.out.print("Which country would you like to start in?/n > ");
-		//get input here for starting coutnry
+		// getting starting country
+		while (valid1) {
+			System.out.print("What country would you like to start in?/n > ");
+			startCountryName = scan.nextLine();
+			for (Country i : countryList) {
+				if (i.name == startCountryName) {
+					valid1 = true;
+				}
+			}
+			if (!valid1) {
+				System.out.println("That country isn't playable");
+			}
+		}
 		
-		// Finally constructing organization
 		playerOrg = new Organization(new Ideology(orgIdeoClass, orgIdeoName, a, r, m ,t), orgName, 1);
 		
 		// // REPLACE THE 1 IN ORG CONSTRUCTOR WITH VALUE DERIVED FROM STARTING COUNTRY INPUT - PLZ DONT FORGET // //
@@ -104,7 +124,61 @@ public class mainDriver {
 		
 		valid1 = false; valid2 = false; //reset temps
 		
+		System.out.print("Welcome to the game! Type \"help\" to get started.\n");
 		// main loops
+		while (cycle) {
+			month = turnCounter % 12;
+			year = "" + turnCounter / 12 + 2016;
+			
+			switch (month) {
+				case 0: monthName = "January";
+					break;
+				case 1:monthName = "Feburary";
+					break;
+				case 2: monthName = "March";
+					break;
+				case 3: monthName = "April";
+					break;
+				case 4: monthName = "May";
+					break;
+				case 5: monthName = "June";
+					break;
+				case 6: monthName = "July";
+					break;
+				case 7: monthName = "August";
+					break;
+				case 8: monthName = "September";
+					break;
+				case 9: monthName = "October";
+					break;
+				case 10: monthName = "November";
+					break;
+				case 11: monthName = "December";
+			}
+			
+			turnLabel = month + ", " + year;
+			System.out.println("------ " + turnLabel + " ------");
+			
+			while (!valid1) {
+				System.out.print(" > ");
+				temp = scan.nextLine();
+				// Trim, strip out space-delimited substrings here
+				temp = temp.trim();
+				try {
+					userParams = temp.split(" ");
+					valid1 = true;
+				}
+				catch (Exception e) {
+					System.out.println("Command not recognized, too many parameters. Try typing \"help\".");
+				}
+			}
+			
+			// get user commands bit-by-bit here
+			
+			valid1 = false; //reset temp
+			
+			turnCounter++;
+		}
 		
 	}
 	
