@@ -158,7 +158,9 @@ public class mainDriver {
 			
 			turnLabel = month + ", " + year;
 			System.out.println("------ " + turnLabel + " ------");
+			System.out.println("You have " + playerOrg.actions + " actions this turn.");
 			
+			// Main user input loop
 			while (!valid1) {
 				System.out.print(" > ");
 				temp = scan.nextLine();
@@ -215,13 +217,17 @@ public class mainDriver {
 						else if (userParams[0].matches("")) {
 							
 						}
-						// 
+						// User wants to do other action in country
 						else if (userParams[0].matches("")) {
 							
 						}
 						// User wants help page
-						else if (userParams[1].matches("[hH]elp")) {
-							
+						else if (userParams[0].matches("[hH]elp")) {
+							// print help page here
+						}
+						// User wants to exit
+						else if ((userParams[0]+userParams[1]).matches("[eE]nd[tT]urn")) {
+							valid1 = true;
 						}
 						else {
 							throw new IOException();
@@ -244,6 +250,7 @@ public class mainDriver {
 			// End of turn calculations here
 			valid1 = false; //reset temp
 			
+			//playerOrg.actions = whatever;
 			turnCounter++;
 		}
 		
