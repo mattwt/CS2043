@@ -14,7 +14,7 @@
 }
 :North Korea
 {
-	pop = 24895
+	pop = 24895;
 	size = 120;
 	troops = 1106;
 	tech = 5;

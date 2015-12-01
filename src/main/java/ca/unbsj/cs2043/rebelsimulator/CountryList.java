@@ -20,6 +20,12 @@ public class CountryList implements Iterable<Country> {
 		int cNum = 0, curParam = 0, errorCode = 0;
 		String[] params = new String[paramNum];
 		
+		// params we want
+		int pop = 0, size = 0, troops = 0, tech = 0, pide = 0, gide = 0;
+		double br = 0, rp = 0, su = 0, gs = 0, coh = 0;
+		String uName = "";
+		double a = 0, r = 0, m = 0, t = 0;
+		
 		try {
 			// magic
 			BufferedReader cbr = new BufferedReader(new FileReader(CountryList.class.getClassLoader()
@@ -52,26 +58,156 @@ public class CountryList implements Iterable<Country> {
 							String param, data;
 							int eq = line.indexOf('=');
 							int semi = line.indexOf(';');
-							param = line.substring(0, eq-1).trim();
+							param = line.substring(0, eq).trim();
 							data = line.substring(eq+1, semi-1).trim();
 							Double in = Double.parseDouble(data);
 							
 							errorCode = 6;
-							//logic to assign params using 'in' here
+							if (param.matches("[pP]op")) {
+								try {
+									pop = Integer.parseInt(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[sS]ize")) {
+								try {
+									size = Integer.parseInt(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[tT]roops")) {
+								try {
+									troops = Integer.parseInt(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[tT]ech")) {
+								try {
+									tech = Integer.parseInt(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[pP]ide")) {
+								try {
+									pide = Integer.parseInt(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[gG]ide")) {
+								try {
+									gide = Integer.parseInt(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[bB]r")) {
+								try {
+									br = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[rR]p")) {
+								try {
+									rp = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[sS]u")) {
+								try {
+									su = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[gG]s")) {
+								try {
+									gs = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[cC]oh")) {
+								try {
+									coh = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[uU]name")) {
+								uName = data;
+							}
+							else if (line.matches("[aA]")) {
+								try {
+									a = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[rR]")) {
+								try {
+									r = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[mM]")) {
+								try {
+									m = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[tT]")) {
+								try {
+									t = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else {
+								errorCode = 8;
+								throw new IOException();
+							}
 							
 							curParam++;
 						}
 						else if (line.matches("}")) {
-							errorCode = 7;
+							errorCode = 8;
 							onParam = false;
 							cNum++;
 							curParam = 0;
 							
 							//do construction here
 							
+							pop = size = troops = tech = pide = gide = 0;
+							br = rp = su = gs = coh = 0.0;
+							a = r = m = t = 0.0;
+							name = "";
 						}
 						else {
-							errorCode = 8;
+							errorCode = 9;
 							throw new IOException();
 						}
 					}
