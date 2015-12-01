@@ -20,8 +20,8 @@ public class Government {
 		orgSupport = s;
 	}
 	
-	public Government(int id, String un, String n, 
-			double a, double r, double m, double t, double c, double s) {
+	public Government(int id, String un, double c, double s,
+			double a, double r, double m, double t) {
 		ideo = new Ideology(id, un, a, r, m, t);
 		cohesion = c;
 		orgSupport = s;

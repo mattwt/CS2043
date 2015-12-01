@@ -16,7 +16,7 @@ public class Population {
 	boolean inRevolt = false;
 	boolean isSuppressed = false;
 	
-	public Population(String n, double br, double rp, double su, double gs, 
+	public Population(double br, double rp, double su, double gs, 
 			int id, String un, double auth, double right, double trad, double mili) {
 		ideo = new Ideology(id, un, auth, right, mili, trad);
 		baseRevolt = br;

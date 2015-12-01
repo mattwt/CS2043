@@ -17,14 +17,16 @@ public class CountryList implements Iterable<Country> {
 		boolean onParam = false;
 		String line = "";
 		String name = "";
-		int cNum = 0, curParam = 0, errorCode = 0;
-		String[] params = new String[paramNum];
+		int cNum = 0, errorCode = 0;
 		
 		// params we want
-		int pop = 0, size = 0, troops = 0, tech = 0, pide = 0, gide = 0;
-		double br = 0, rp = 0, su = 0, gs = 0, coh = 0;
-		String uName = "";
-		double a = 0, r = 0, m = 0, t = 0;
+		int pop = 0, size = 0, troops = 0, tech = 0, pide = -1, gide = -1;
+		double br = -1, rp = -1, su = -1, gs = -1, coh = -1;
+		double ga = 100, gr = 100, gm = 100, gt = 100;
+		double pa = 100, pr = 100, pm = 100, pt = 100;
+		Ideology govIdeo, popIdeo;
+		Government government;
+		Population population;
 		
 		try {
 			// magic
@@ -151,36 +153,65 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[uU]name")) {
-								uName = data;
-							}
-							else if (line.matches("[aA]")) {
+							else if (line.matches("[gG]a")) {
 								try {
-									a = Double.parseDouble(data);
+									ga = Double.parseDouble(data);
 								}
 								catch (NumberFormatException nf) {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[rR]")) {
+							else if (line.matches("[gG]r")) {
 								try {
-									r = Double.parseDouble(data);
+									gr = Double.parseDouble(data);
 								}
 								catch (NumberFormatException nf) {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[mM]")) {
+							else if (line.matches("[gG]m")) {
 								try {
-									m = Double.parseDouble(data);
+									gm = Double.parseDouble(data);
 								}
 								catch (NumberFormatException nf) {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[tT]")) {
+							else if (line.matches("[gG]t")) {
 								try {
-									t = Double.parseDouble(data);
+									gt = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[pP]a")) {
+								try {
+									pa = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[pP]r")) {
+								try {
+									pr = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[pP]m")) {
+								try {
+									pm = Double.parseDouble(data);
+								}
+								catch (NumberFormatException nf) {
+									throw new IOException();
+								}
+							}
+							else if (line.matches("[pP]t")) {
+								try {
+									pt = Double.parseDouble(data);
 								}
 								catch (NumberFormatException nf) {
 									throw new IOException();
@@ -190,21 +221,27 @@ public class CountryList implements Iterable<Country> {
 								errorCode = 8;
 								throw new IOException();
 							}
-							
-							curParam++;
 						}
 						else if (line.matches("}")) {
 							errorCode = 8;
-							onParam = false;
+							
+							if (pop > 0 && size > 0 && troops >= 0 && tech > 0 && 
+									br >= 0 && rp >= 0 && su >= 0 && gs >= 0 && coh >= 0) {
+								population = new Population(br, rp, su, gs, pide, "", pa, pr, pm, pt);
+								government = new Government(gide, "", coh, su, ga, gr, gm, gt);
+								cList[cNum] = new Country(name, troops, size, pop, tech, government, population);
+							}
+							else {
+								throw new IOException();
+							}
+							
+							// reset, since we're done now
+							pop = size = troops = tech = 0;
+							pide = gide = -1;
+							br = rp = su = gs = coh = -1;
+							ga = gr = gm = gt = 100;
+
 							cNum++;
-							curParam = 0;
-							
-							//do construction here
-							
-							pop = size = troops = tech = pide = gide = 0;
-							br = rp = su = gs = coh = 0.0;
-							a = r = m = t = 0.0;
-							name = "";
 						}
 						else {
 							errorCode = 9;
@@ -219,8 +256,6 @@ public class CountryList implements Iterable<Country> {
 		}
 		catch (IOException f) {
 			System.err.println("File reading had problems, code " + errorCode);
-			System.err.println("Constructor build content was: ");
-			String cons = "Line: " + line + "; Name: " + name + "; \nParams: " + params.toString();
 		}
 		catch (NullPointerException np) {
 			System.err.println("List had more parameters than what was specified.");

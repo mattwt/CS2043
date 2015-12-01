@@ -22,8 +22,8 @@ public class Country {
 	int troops, population, size, techLevel;
 	
 	public Country(String n, int soldiers, int s, int p, int t, 
-			int id, String un, String nm, Government g, Population po) {
-		name = nm;
+			Government g, Population po) {
+		name = n;
 		density = ((double) p) / s; 
 		population = p;
 		size = s;
