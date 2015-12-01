@@ -12,8 +12,12 @@ public class TechTree {
 	//meaning that p_tree and t_tree MUST share the same total number of lines
 	public TechTree(int flavorLength) {
 		try {
-			BufferedReader brt = new BufferedReader(new FileReader("t_tree"));
-			BufferedReader brp = new BufferedReader(new FileReader("p_tree"));
+			BufferedReader brt = new BufferedReader(new FileReader(TechTree.class.getClassLoader()
+					.getResource("t_tree").getPath()
+                    .replaceAll("%20", " ")));
+			BufferedReader brp = new BufferedReader(new FileReader(TechTree.class.getClassLoader()
+					.getResource("t_tree").getPath()
+					.replaceAll("%20", " ")));
 			String tline = null, pline = null;
 			String tname = null, pname = null;
 			String[] tflavor = new String[flavorLength];

@@ -166,15 +166,82 @@ public class mainDriver {
 				temp = temp.trim();
 				try {
 					userParams = temp.split(" ");
-					valid1 = true;
+					// Parse the string piece-wise
+					while (!valid2) {
+						// User wants to buy tech
+						if (userParams[0].matches("[bB]uy")) {
+							if (userParams[1].matches("[tT]ech")) {
+								
+							}
+							else if (userParams[1].matches("[pP]olicy")) {
+								
+							}
+							else {
+								throw new IOException();
+							}
+						}
+						// User wants to send agent
+						else if ((userParams[0]+userParams[1]+userParams[2]).matches("[sS]end[aA]gent[tT]o")) {
+							String dest = "";
+							for (int l = 3; userParams[l] == ""; l++) {
+								dest.concat(userParams[l]);
+							}
+							
+							Country cDest = countryList.exists(dest);
+							if (cDest != null) {
+								// Send agent to specified country
+								//blah blah
+								if (cDest.hasAgent) {
+									System.out.println(cDest.name + " already has an agent. No action taken.");
+								}
+								else {
+									if (playerOrg.doAction()) {
+										cDest.sendAgent();
+										System.out.println("You have " + playerOrg.actions + " actions left.");
+									}
+									else {
+										System.out.println("No action points left.");
+										throw new Exception();
+									}
+								}
+								
+								valid2 = true;
+							}
+							else {
+								throw new IOException();
+							}
+						}
+						// User wants to do an action in country
+						else if (userParams[0].matches("")) {
+							
+						}
+						// 
+						else if (userParams[0].matches("")) {
+							
+						}
+						// User wants help page
+						else if (userParams[1].matches("[hH]elp")) {
+							
+						}
+						else {
+							throw new IOException();
+						}
+					}
+					valid2 = false;
+				}
+				catch (NullPointerException np) {
+					System.out.println("Command not recognized, too many parameters. Try typing \"help\".");
+				}
+				catch (IOException io) {
+					System.out.println("Command not recognized. Try typing \"help\".");
 				}
 				catch (Exception e) {
-					System.out.println("Command not recognized, too many parameters. Try typing \"help\".");
+					System.out.println("");
 				}
 			}
 			
-			// get user commands bit-by-bit here
 			
+			// End of turn calculations here
 			valid1 = false; //reset temp
 			
 			turnCounter++;

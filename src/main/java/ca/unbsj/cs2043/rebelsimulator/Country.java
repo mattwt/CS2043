@@ -17,7 +17,7 @@ public class Country {
 	Population pop;
 	String name;
 	double density;
-	boolean owned;
+	boolean owned, hasAgent;
 	//troops, size, and pop in thousands
 	int troops, population, size, techLevel;
 	
@@ -32,6 +32,10 @@ public class Country {
 		pop = po;
 		gov = g;
 	}
+	
+	public void sendAgent() {hasAgent = true;}
+	
+	public boolean hasAgent() {return hasAgent;}
 	
 	public void init() {
 		

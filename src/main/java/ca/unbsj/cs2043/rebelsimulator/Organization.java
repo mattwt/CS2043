@@ -15,6 +15,7 @@ public class Organization {
 	TechTree techTree = new TechTree(5);
 	String name;
 	long money;
+	int actions = 3; // action counter
 	
 	public Organization(Ideology i, String n, long m) {
 		ideo = i;
@@ -31,6 +32,16 @@ public class Organization {
 		
 		
 		return success;
+	}
+	
+	public boolean doAction() {
+		if (actions <= 0) {
+			return false;
+		}
+		else {
+			actions--;
+			return true;
+		}
 	}
 	
 	public boolean upgradePolicy(int id) {

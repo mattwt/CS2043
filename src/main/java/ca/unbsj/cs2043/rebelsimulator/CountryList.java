@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Iterator;
 
 public class CountryList implements Iterable<Country> {
@@ -20,7 +21,10 @@ public class CountryList implements Iterable<Country> {
 		String[] params = new String[paramNum];
 		
 		try {
-			BufferedReader cbr = new BufferedReader(new FileReader("c_list"));
+			// magic
+			BufferedReader cbr = new BufferedReader(new FileReader(CountryList.class.getClassLoader()
+                              .getResource("c_list").getPath()
+                              .replaceAll("%20", " ")));
 			errorCode = 1;
 			while (hasNext) {
 				line = cbr.readLine();
@@ -94,7 +98,14 @@ public class CountryList implements Iterable<Country> {
 	//getters/setters
 	public Country getCountry(int ID) {return cList[ID];}
 	
-	
+	public Country exists(String name) {
+		for (int i = 0; i < cList.length; i++) {
+			if (cList[i].name.equals(name)) {
+				return cList[i];
+			}
+		}
+		return null;
+	}
 	
 	public Iterator<Country> iterator() {
 		return new CountryIterator();
