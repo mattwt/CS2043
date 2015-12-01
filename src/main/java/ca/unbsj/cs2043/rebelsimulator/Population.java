@@ -13,21 +13,30 @@ public class Population {
 	
 	Ideology ideo;
 	String name;
-	double baseRevolt, revolt, richPercent, govSupport, orgSupport, suppression;
+	double baseRevolt, revolt, richPoor, govSupport, orgSupport, suppression;
 	boolean inRevolt = false;
 	boolean isSuppressed = false;
-		
-	public Population(Ideology i, String n, double br, double rp, double su, double gs) {
-		ideo = i;
+	
+	public Population(String n, double br, double rp, double su, double gs, 
+			int id, String un, double auth, double right, double trad, double mili) {
+		ideo = new Ideology(id, un, auth, right, mili, trad);
 		name = n;
 		baseRevolt = br;
-		richPercent = rp;
+		richPoor = rp;
 		suppression = su;
 		govSupport = gs;
 		//calc();
 	}
 	
-	
+	public Population(Ideology i, String n, double br, double rp, double su, double gs) {
+		ideo = i;
+		name = n;
+		baseRevolt = br;
+		richPoor = rp;
+		suppression = su;
+		govSupport = gs;
+		//calc();
+	}
 	
 	
 }

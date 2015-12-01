@@ -82,6 +82,10 @@ public class Ideology {
 			case 9: name = "Neoliberal";
 				shName = "nelib";
 				//free market, expansionist
+				auth = 0.82;
+				right = 0.93;
+				mili = 0.69;
+				trad = 0.76;
 				break;
 		}
 		calc();

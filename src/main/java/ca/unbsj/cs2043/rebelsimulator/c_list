@@ -1,16 +1,14 @@
-:TESTCOUNTRY1
+:USA
 {
-	param1 = 0;
-	param2 = 0;
-	param3 = 0;
-	param4 = 0;
-	param5 = 0;
+	pop = 328729;
+	size = 9857;
+	troops = 1361;
+	tech = 10;
+	gide = 9;
+	pide = 9;
 }
-:TESTCOUNTRY2
+:North Korea
 {
-	param1 = 0;
-	param2 = 0;
-	param3 = 0;
-	param4 = 0;
-	param5 = 0;
+	ide = 1;
+	
 }
