@@ -4,11 +4,25 @@
 	size = 9857;
 	troops = 1361;
 	tech = 10;
-	gide = 9;
 	pide = 9;
+	br = 0.25;
+	rp = 0.8;
+	su = 0.4;
+	gs = 0.8;
+	gide = 9;
+	coh = 0.85;
 }
 :North Korea
 {
-	ide = 1;
-	
+	pop = 24895
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 1;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 1;
+	coh = 0.8;
 }
