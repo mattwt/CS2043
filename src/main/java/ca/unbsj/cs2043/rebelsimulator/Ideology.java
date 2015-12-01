@@ -91,8 +91,14 @@ public class Ideology {
 		//do scaled radicalism calculation
 		radism = (Math.pow(Math.abs(auth), 4.0) + Math.pow(Math.abs(right), 4.0) 
 				+ Math.pow(mili, 3.0) + Math.pow(Math.abs(trad), 4.0));
-		
-		
+	}
+	
+	public void recalcDrift(Ideology i, double strength) {
+		double difference = diff(i);
+		auth = auth + (strength * i.auth) - difference/2;
+		right = right + (strength * i.right) - difference/2;
+		mili = mili + (strength * i.mili) - difference/2;
+		trad = trad + (strength * i.trad) - difference/2;
 	}
 	
 	public double diff(Ideology i) {
