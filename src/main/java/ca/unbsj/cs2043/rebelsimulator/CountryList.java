@@ -4,12 +4,14 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
 
 public class CountryList implements Iterable<Country> {
 	
-	Country[] cList;
+	ArrayList<Country> cList = new ArrayList<>();
+	ArrayList<boolean[]> hasAction = new ArrayList<>();
 	
 	//Constructor does the work of initialize() conceptual method
 	CountryList (int paramNum) {
@@ -229,7 +231,7 @@ public class CountryList implements Iterable<Country> {
 									br >= 0 && rp >= 0 && su >= 0 && gs >= 0 && coh >= 0) {
 								population = new Population(br, rp, su, gs, pide, "", pa, pr, pm, pt);
 								government = new Government(gide, "", coh, su, ga, gr, gm, gt);
-								cList[cNum] = new Country(name, troops, size, pop, tech, government, population);
+								cList.add(new Country(name, troops, size, pop, tech, government, population));
 							}
 							else {
 								throw new IOException();
@@ -240,8 +242,6 @@ public class CountryList implements Iterable<Country> {
 							pide = gide = -1;
 							br = rp = su = gs = coh = -1;
 							ga = gr = gm = gt = 100;
-
-							cNum++;
 						}
 						else {
 							errorCode = 9;
@@ -262,17 +262,33 @@ public class CountryList implements Iterable<Country> {
 		}
 	}
 	
+	public boolean initialize(String name) {
+		Country start = exists(name);
+		if (start != null) {
+			boolean[] temp = new boolean[3];
+			Arrays.fill(temp, false);
+			for (int i = 0; i < cList.size(); i++) {
+				hasAction.add(temp);
+			}
+			start.starter();
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
 	public void tick() {
-		//write tick stuff here
+		for (Country c : cList) {
+			c.tick();
+		}
 	}
 	
 	//getters/setters
-	public Country getCountry(int ID) {return cList[ID];}
-	
 	public Country exists(String name) {
-		for (int i = 0; i < cList.length; i++) {
-			if (cList[i].name.equals(name)) {
-				return cList[i];
+		for (Country c : cList) {
+			if (c.name == name) {
+				return c;
 			}
 		}
 		return null;
@@ -282,31 +298,16 @@ public class CountryList implements Iterable<Country> {
 		return new CountryIterator();
 	}
 	
-	//Debugging to check country names
-	@Override
-	public String toString() {
-		String ret = "";
-		for (int i = 0; i < cList.length; i++) {
-			if (i == 0) {
-				ret += cList[i].name;
-			}
-			else {
-				ret += ", " + cList[i].name;
-			}
-		}
-		return ret;
-	}
-	
 	class CountryIterator implements Iterator<Country>  {
 		
 		int i = 0;
 		
 		public boolean hasNext() {
-			if (i > cList.length) {return true;}
+			if (i > cList.size()) {return true;}
 			else {return false;}
 		}
 		public Country next() {
-			return cList[++i];
+			return cList.get(++i);
 		}
 		public void remove() {
 			//not implemented

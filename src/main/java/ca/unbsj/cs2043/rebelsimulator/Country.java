@@ -33,19 +33,18 @@ public class Country {
 		gov = g;
 	}
 	
+	public void starter() {
+		owned = true;
+		hasAgent = true;
+		gov.orgSupport = 1;
+	}
+	
 	public void sendAgent() {hasAgent = true;}
 	
 	public boolean hasAgent() {return hasAgent;}
 	
-	public void init() {
-		
-		//gov.init();
-		//pop.init();
-		//other shit
-	}
-	
 	public void tick() {
-		//recalc revolt and call pops/gov recalc
+		
 	}
 	
 	
