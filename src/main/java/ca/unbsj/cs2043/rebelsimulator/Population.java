@@ -14,7 +14,7 @@ public class Population {
 	Ideology ideo;
 	double baseRevolt, revolt, richPoor, govSupport, orgSupport, suppression;
 	boolean inRevolt = false;
-	boolean isSuppressed = false;
+	boolean orgRevolt = false;
 	
 	public Population(double br, double rp, double su, double gs, 
 			int id, String un, double auth, double right, double trad, double mili) {

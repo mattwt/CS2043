@@ -27,9 +27,5 @@ public class Government {
 		orgSupport = s;
 	}
 	
-	public void suppress() {
-		
-	}
-	
 	
 }

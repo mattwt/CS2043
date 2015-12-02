@@ -56,7 +56,7 @@ public class CountryList implements Iterable<Country> {
 							throw new IOException();
 						}
 					}
-					if (onParam) {
+					else if (onParam) {
 						if (line.matches("(.*)(;)")) {
 							errorCode = 5;
 							String param, data;
@@ -66,6 +66,7 @@ public class CountryList implements Iterable<Country> {
 							data = line.substring(eq+1, semi-1).trim();
 							Double in = Double.parseDouble(data);
 							
+							// assigning data to its proper parameter in constructor
 							errorCode = 6;
 							if (param.matches("[pP]op")) {
 								try {
@@ -227,6 +228,7 @@ public class CountryList implements Iterable<Country> {
 						else if (line.matches("}")) {
 							errorCode = 8;
 							
+							// is the data valid to initialize the country?
 							if (pop > 0 && size > 0 && troops >= 0 && tech > 0 && 
 									br >= 0 && rp >= 0 && su >= 0 && gs >= 0 && coh >= 0) {
 								if (pa >= -1 && pa <= 1 && pr >= -1 && pr <= 1 && pm >= -1 && pm <= 1 &&
@@ -254,6 +256,7 @@ public class CountryList implements Iterable<Country> {
 							br = rp = su = gs = coh = -1;
 							pa = pr = pm = pt = 100;
 							ga = gr = gm = gt = 100;
+							onParam = false;
 						}
 						else {
 							errorCode = 9;

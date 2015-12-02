@@ -18,6 +18,7 @@ public class Country {
 	String name;
 	double density;
 	boolean owned, hasAgent;
+	boolean orgSupportingRevolt;
 	//troops, size, and pop in thousands
 	int troops, population, size, techLevel;
 	
@@ -39,11 +40,35 @@ public class Country {
 		gov.orgSupport = 1;
 	}
 	
+	void suppressUpdate() {
+		pop.suppression += (((double) techLevel)/5 + gov.ideo.auth + gov.ideo.mili +
+				((double) troops)/1000 + gov.cohesion) / 10;
+	}
+	
+	void updateRevolt() {
+		
+	}
+	
+	public void incGovSupport(double mod) {
+		
+	}
+	
+	public void incPopSupport(double mod) {
+		
+	}
+	
 	public void sendAgent() {hasAgent = true;}
 	
 	public boolean hasAgent() {return hasAgent;}
 	
 	public void tick() {
+		// Suppression chance
+		
+		
+		if (Math.random() > (pop.revolt + Math.pow(gov.ideo.mili, 3))) {
+			suppressUpdate();
+		}
+		
 		
 	}
 	
