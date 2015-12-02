@@ -293,9 +293,9 @@ public class CountryList implements Iterable<Country> {
 		}
 	}
 	
-	public void tick() {
+	public void tick(Organization o) {
 		for (Country c : cList) {
-			c.tick();
+			c.tick(o);
 		}
 	}
 	

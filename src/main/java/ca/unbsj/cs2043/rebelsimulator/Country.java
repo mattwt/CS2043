@@ -18,7 +18,7 @@ public class Country {
 	String name;
 	double density;
 	boolean owned, hasAgent;
-	boolean orgSupportingRevolt;
+	boolean orgSuppRevolt, orgFighting, orgProp;
 	//troops, size, and pop in thousands
 	int troops, population, size, techLevel;
 	
@@ -43,10 +43,13 @@ public class Country {
 	void suppressUpdate() {
 		pop.suppression += (((double) techLevel)/5 + gov.ideo.auth + gov.ideo.mili +
 				((double) troops)/1000 + gov.cohesion) / 10;
+		if (pop.inRevolt) {
+			pop.suppression += ((double) troops)/1000 + gov.ideo.mili;
+		}
 	}
 	
 	void updateRevolt() {
-		
+		pop.revolt += gov.ideo.diff(pop.ideo);
 	}
 	
 	public void incGovSupport(double mod) {
@@ -61,14 +64,31 @@ public class Country {
 	
 	public boolean hasAgent() {return hasAgent;}
 	
-	public void tick() {
+	public void tick(Organization o) {
+		// Revolt increase chance
+		if (Math.random() > pop.govSupport) {
+			updateRevolt();
+		}
+		
+		// Are we in revolt?
+		if (Math.random() > pop.revolt) {
+			pop.inRevolt = true;
+		}
+		
 		// Suppression chance
-		
-		
-		if (Math.random() > (pop.revolt + Math.pow(gov.ideo.mili, 3))) {
+		if (Math.random() > (pop.revolt + Math.pow(gov.ideo.mili, 3)) || pop.inRevolt) {
 			suppressUpdate();
 		}
 		
+		// Send in the troops if in revolt
+		
+		//
+		
+		// Ideological drift from propaganda
+		if (orgProp) {
+			pop.ideo.recalcDrift(o.ideo, o.techTree.policies.get(0).currentMod+0.05);
+			gov.ideo.recalcDrift(o.ideo, o.techTree.techs.get(0).currentMod+0.05);
+		}
 		
 	}
 	
