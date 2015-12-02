@@ -1,6 +1,7 @@
 package ca.unbsj.cs2043.rebelsimulator;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,11 +11,11 @@ import java.util.Iterator;
 
 public class CountryList implements Iterable<Country> {
 	
-	ArrayList<Country> cList = new ArrayList<>();
-	ArrayList<boolean[]> hasAction = new ArrayList<>();
+	ArrayList<Country> cList = new ArrayList<Country>();
+	ArrayList<boolean[]> hasAction = new ArrayList<boolean[]>();
 	
 	//Constructor does the work of initialize() conceptual method
-	CountryList (int paramNum) {
+	CountryList () {
 		boolean hasNext = true;
 		boolean onParam = false;
 		String line = "";
@@ -31,13 +32,14 @@ public class CountryList implements Iterable<Country> {
 		Population population;
 		
 		try {
-			// magic
-			BufferedReader cbr = new BufferedReader(new FileReader(CountryList.class.getClassLoader()
-                              .getResource("c_list").getPath()
-                              .replaceAll("%20", " ")));
+			File f = new File("");
+			String s = f.getAbsolutePath();
+			FileReader cfr = new FileReader(s+"\\src\\main\\java\\ca\\unbsj\\cs2043\\rebelsimulator\\c_list");
+			BufferedReader cbr = new BufferedReader(cfr);
 			errorCode = 1;
 			while (hasNext) {
 				line = cbr.readLine();
+				System.out.println("cline: " + line);
 				errorCode = 2;
 				if (line == null) {
 					hasNext = false;
@@ -48,7 +50,7 @@ public class CountryList implements Iterable<Country> {
 							errorCode = 3;
 							name = line.substring(line.indexOf(':') + 1);
 						}
-						else if (line.matches("{") && !onParam) {
+						else if (line.matches("\\{")) {
 							onParam = true;
 						}
 						else {
@@ -62,9 +64,10 @@ public class CountryList implements Iterable<Country> {
 							String param, data;
 							int eq = line.indexOf('=');
 							int semi = line.indexOf(';');
+							System.out.println("(eq: " + eq + ", semi: " + semi + ")");
 							param = line.substring(0, eq).trim();
-							data = line.substring(eq+1, semi-1).trim();
-							Double in = Double.parseDouble(data);
+							data = line.substring(eq+1, semi).trim();
+							System.out.println("(param: " + param + ", data: " + data + ")");
 							
 							// assigning data to its proper parameter in constructor
 							errorCode = 6;
@@ -76,7 +79,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[sS]ize")) {
+							else if (param.matches("[sS]ize")) {
 								try {
 									size = Integer.parseInt(data);
 								}
@@ -84,7 +87,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[tT]roops")) {
+							else if (param.matches("[tT]roops")) {
 								try {
 									troops = Integer.parseInt(data);
 								}
@@ -92,7 +95,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[tT]ech")) {
+							else if (param.matches("[tT]ech")) {
 								try {
 									tech = Integer.parseInt(data);
 								}
@@ -100,7 +103,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[pP]ide")) {
+							else if (param.matches("[pP]ide")) {
 								try {
 									pide = Integer.parseInt(data);
 								}
@@ -108,7 +111,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[gG]ide")) {
+							else if (param.matches("[gG]ide")) {
 								try {
 									gide = Integer.parseInt(data);
 								}
@@ -116,7 +119,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[bB]r")) {
+							else if (param.matches("[bB]r")) {
 								try {
 									br = Double.parseDouble(data);
 								}
@@ -124,7 +127,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[rR]p")) {
+							else if (param.matches("[rR]p")) {
 								try {
 									rp = Double.parseDouble(data);
 								}
@@ -132,7 +135,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[sS]u")) {
+							else if (param.matches("[sS]u")) {
 								try {
 									su = Double.parseDouble(data);
 								}
@@ -140,7 +143,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[gG]s")) {
+							else if (param.matches("[gG]s")) {
 								try {
 									gs = Double.parseDouble(data);
 								}
@@ -148,7 +151,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[cC]oh")) {
+							else if (param.matches("[cC]oh")) {
 								try {
 									coh = Double.parseDouble(data);
 								}
@@ -156,7 +159,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[gG]a")) {
+							else if (param.matches("[gG]a")) {
 								try {
 									ga = Double.parseDouble(data);
 								}
@@ -164,7 +167,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[gG]r")) {
+							else if (param.matches("[gG]r")) {
 								try {
 									gr = Double.parseDouble(data);
 								}
@@ -172,7 +175,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[gG]m")) {
+							else if (param.matches("[gG]m")) {
 								try {
 									gm = Double.parseDouble(data);
 								}
@@ -180,7 +183,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[gG]t")) {
+							else if (param.matches("[gG]t")) {
 								try {
 									gt = Double.parseDouble(data);
 								}
@@ -188,7 +191,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[pP]a")) {
+							else if (param.matches("[pP]a")) {
 								try {
 									pa = Double.parseDouble(data);
 								}
@@ -196,7 +199,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[pP]r")) {
+							else if (param.matches("[pP]r")) {
 								try {
 									pr = Double.parseDouble(data);
 								}
@@ -204,7 +207,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[pP]m")) {
+							else if (param.matches("[pP]m")) {
 								try {
 									pm = Double.parseDouble(data);
 								}
@@ -212,7 +215,7 @@ public class CountryList implements Iterable<Country> {
 									throw new IOException();
 								}
 							}
-							else if (line.matches("[pP]t")) {
+							else if (param.matches("[pP]t")) {
 								try {
 									pt = Double.parseDouble(data);
 								}
@@ -225,7 +228,7 @@ public class CountryList implements Iterable<Country> {
 								throw new IOException();
 							}
 						}
-						else if (line.matches("}")) {
+						else if (line.matches("\\}")) {
 							errorCode = 8;
 							
 							// is the data valid to initialize the country?
@@ -302,7 +305,7 @@ public class CountryList implements Iterable<Country> {
 	//getters/setters
 	public Country exists(String name) {
 		for (Country c : cList) {
-			if (c.name == name) {
+			if (c.name.equals(name)) {
 				return c;
 			}
 		}

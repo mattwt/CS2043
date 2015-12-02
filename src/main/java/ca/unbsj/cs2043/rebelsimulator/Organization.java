@@ -54,6 +54,9 @@ public class Organization {
 		return success;
 	}
 	
+	public double getTechMod(int id) {return techTree.getTechMod(id);}
+	public double getPolMod(int id) {return techTree.getPolMod(id);}
+	
 	public boolean canBuy(long cost) {
 		if (money > cost) {
 			return true;

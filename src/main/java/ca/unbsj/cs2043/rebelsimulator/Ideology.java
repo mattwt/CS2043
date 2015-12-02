@@ -36,7 +36,7 @@ public class Ideology {
 				//communist
 				auth = 0.97;
 				right = -0.89;
-				mili = 0.8;
+				mili = 0.7;
 				trad = -0.6;
 				break;
 			case 2: name = "National Socialist";
@@ -73,7 +73,11 @@ public class Ideology {
 				break;
 			case 6: name = "Reactionary";
 				shName = "react";
-				//wants to roll back reform, similar to religious
+				//wants to roll back reform
+				auth = 0.8;
+				right = 0.9;
+				mili = 0.7;
+				trad = 0.95;
 				break;
 			case 7: name = "Neoliberal";
 				shName = "nelib";
@@ -82,6 +86,22 @@ public class Ideology {
 				right = 0.93;
 				mili = 0.69;
 				trad = 0.76;
+				break;
+			case 8: name = "Socialist";
+				shName = "soci";
+				//leaning towards socialist
+				auth = 0.3;
+				right = -0.6;
+				mili = -0.2;
+				trad = -0.4;
+				break;
+			case 9: name = "Conservative";
+				shName = "cons";
+				//leaning conservative
+				auth = 0.3;
+				right = 0.6;
+				mili = 0.4;
+				trad = 0.6;
 				break;
 		}
 		calc();

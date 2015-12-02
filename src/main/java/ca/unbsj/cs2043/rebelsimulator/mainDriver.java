@@ -18,7 +18,7 @@ public class mainDriver {
 	 * @param args the command line arguments
 	 */
 	public static void main(String[] args) {
-		
+		/*
 		// Temps, readers, and counters
 		Scanner scan = new Scanner(System.in);
 		String temp = "";
@@ -253,6 +253,7 @@ public class mainDriver {
 			//playerOrg.actions = whatever;
 			turnCounter++;
 		}
+		*/
 		
 	}
 	

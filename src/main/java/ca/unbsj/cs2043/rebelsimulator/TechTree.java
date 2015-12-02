@@ -2,6 +2,7 @@ package ca.unbsj.cs2043.rebelsimulator;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.regex.PatternSyntaxException;
 
 public class TechTree {
 	
@@ -13,34 +14,36 @@ public class TechTree {
 	//meaning that p_tree and t_tree MUST share the same total number of lines
 	public TechTree(int flavorLength) {
 		try {
-			BufferedReader brt = new BufferedReader(new FileReader(TechTree.class.getClassLoader()
-					.getResource("t_tree").getPath()
-                    .replaceAll("%20", " ")));
-			BufferedReader brp = new BufferedReader(new FileReader(TechTree.class.getClassLoader()
-					.getResource("t_tree").getPath()
-					.replaceAll("%20", " ")));
+			File f = new File("");
+			String s = f.getAbsolutePath();
+			FileReader frt = new FileReader(s+"\\src\\main\\java\\ca\\unbsj\\cs2043\\rebelsimulator\\t_tree");
+			FileReader frp = new FileReader(s+"\\src\\main\\java\\ca\\unbsj\\cs2043\\rebelsimulator\\p_tree");
+			BufferedReader brt = new BufferedReader(frt);
+			BufferedReader brp = new BufferedReader(frp);
 			String tline = null, pline = null;
 			String tname = null, pname = null;
 			String[] tflavor = new String[flavorLength];
 			String[] pflavor = new String[flavorLength];
 			double[] tmods = new double[flavorLength];
 			double[] pmods = new double[flavorLength];
-			double tspec = 0.0, pspec = 0.0;
 			long[] tcost = new long[flavorLength];
 			long[] pcost = new long[flavorLength];
 			Boolean hasNext = true;
 			
 			int i = 0, n = 0;
 			while (hasNext) {
+				System.out.println(n + " " + i);
 				tline = brt.readLine();
 				pline = brp.readLine();
+				System.out.println("tline: " + tline + ", pline: " + pline);
 				
 				if (tline != null && pline != null) {
 					if (i == 0) {
 						tname = tline;
 						pname = pline;
+						i++;
 					}
-					else if (i > 0 && i < flavorLength) {
+					else if (i > 0 && i <= flavorLength) {
 						//split the line around the semicolons, then
 						//extract the flavor text and modifier for each file line
 						int tsemicolon, psemicolon, ttilde, ptilde;
@@ -48,21 +51,23 @@ public class TechTree {
 						psemicolon = pline.indexOf(";");
 						ttilde = tline.indexOf("~");
 						ptilde = pline.indexOf("~");
-						tflavor[i-1] = tline.substring(0, tsemicolon-1);
-						pflavor[i-1] = pline.substring(0, psemicolon-1);
-						tmods[i-1] = Double.parseDouble(tline.substring(tsemicolon+1, ttilde-1));
-						pmods[i-1] = Double.parseDouble(pline.substring(tsemicolon+1, ptilde-1));
+						System.out.println("tsc: " + tsemicolon + ", psc: " + psemicolon + 
+								"\ntt: " + ttilde + ", ptt: " + ptilde);
+						tflavor[i-1] = tline.substring(0, tsemicolon);
+						pflavor[i-1] = pline.substring(0, psemicolon);
+						System.out.println("tflavor: " + tflavor[i-1] + ", pflavor: " + pflavor[i-1]);
+						tmods[i-1] = Double.parseDouble(tline.substring(tsemicolon+1, ttilde));
+						pmods[i-1] = Double.parseDouble(pline.substring(psemicolon+1, ptilde));
+						System.out.println("tmods: " + tmods[i-1] + ", pmods: " + pmods[i-1]);
 						tcost[i-1] = Long.parseLong(tline.substring(ttilde+1, tline.length()-1));
 						pcost[i-1] = Long.parseLong(pline.substring(ptilde+1, pline.length()-1));
-					}
-					else if (i > flavorLength + 1) {
-						tspec = Double.parseDouble(tline);
-						pspec = Double.parseDouble(pline);
+						System.out.println("tcost: " + tcost[i-1] + ", pcost: " + pcost[i-1]);
+						i++;
 					}
 					else {
 						//call tech/policy constructors with the extracted data
-						techs.add(new Tech(tname, tflavor, tmods, tspec, tcost));
-						policies.add(new Tech(pname, pflavor, pmods, pspec, pcost));
+						techs.add(new Tech(tname, tflavor, tmods, tcost));
+						policies.add(new Tech(pname, pflavor, pmods, pcost));
 						i = 0;
 						n++;
 					}
@@ -70,8 +75,6 @@ public class TechTree {
 				else {
 					hasNext = false;
 				}
-				
-				i++;
 			}
 
 			brt.close();
@@ -82,6 +85,12 @@ public class TechTree {
 		}
 		catch (IOException e) {
 			System.err.println("IO failiure");
+		}
+		catch (SecurityException se) {
+			System.err.println("Security issues");
+		}
+		catch (PatternSyntaxException ps) {
+			System.err.println("Pattern syntax wrong");
 		}
 		catch (Exception e) {
 			System.err.println("Unknown fuckup");

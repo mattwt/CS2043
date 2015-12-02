@@ -7,18 +7,16 @@ public class Tech {
 	String name;
 	double[] modifiers;
 	double currentMod;
-	double specialMod;
 	int level;
 	long[] costarr;
 	long cost;
 	String[] flavor;
 	boolean max = false;
 	
-	public Tech(String n, String[] fla, double[] mods, double spec, long[] c) {
+	public Tech(String n, String[] fla, double[] mods, long[] c) {
 		name = n;
 		flavor = Arrays.copyOf(fla, fla.length);
 		modifiers = Arrays.copyOf(mods, mods.length);
-		specialMod = spec;
 		level = 0;
 		currentMod = modifiers[level];
 		costarr = c;
@@ -58,11 +56,6 @@ public class Tech {
 		else {
 			return flavor[level];
 		}
-	}
-	
-	public double getSpecialMod() {
-		if (max) return specialMod;
-		else return 0.0;
 	}
 	
 	

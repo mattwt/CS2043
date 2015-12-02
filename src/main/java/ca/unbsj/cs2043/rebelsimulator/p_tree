@@ -1,14 +1,12 @@
-policy
-level1;mod1~1231
-level2;mod2~2
-level3;mod3~3
-level4;mod4~4
-level5;mod5~5
-asdfspecmod
-next thing
-level1;mod1~1
-level2;mod2~2
-level3;mod3~3
-level4;mod4~4
-level5;mod5~5
-specmod
+Infiltration
+Smooth-talker;0.10~100
+Cold-reading Techniques;0.15~300
+Dedicated Training;0.20~1500
+Advanced Equipment;0.35~6000
+Targeted Surveillance;0.45~12000
+Propaganda
+Disinformation;0.05~100
+Slogans;0.15~500
+Divide-and-Conquer;0.30~1000
+Conditioning;0.35~5000
+The Fifth Estate;0.40~15000
