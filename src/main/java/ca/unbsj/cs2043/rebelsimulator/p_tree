@@ -1,14 +1,14 @@
 policy
 level1;mod1~1231
-level2;mod2~12312
-level3;mod3~12312
-level4;mod4~2312
-level5;mod5~12312
+level2;mod2~2
+level3;mod3~3
+level4;mod4~4
+level5;mod5~5
 asdfspecmod
 next thing
-level1;mod1~312
-level2;mod2~3213
-level3;mod3~231423
-level4;mod4~432423
-level5;mod5~523523
+level1;mod1~1
+level2;mod2~2
+level3;mod3~3
+level4;mod4~4
+level5;mod5~5
 specmod

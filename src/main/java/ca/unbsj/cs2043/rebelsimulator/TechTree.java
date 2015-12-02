@@ -1,11 +1,12 @@
 package ca.unbsj.cs2043.rebelsimulator;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class TechTree {
 	
-	Tech[] techs;
-	Tech[] policies;
+	ArrayList<Tech> techs = new ArrayList<>();
+	ArrayList<Tech> policies = new ArrayList<>();
 	
 	//pass in the number of lines of flavor text per tech/policy
 	//parse two files at the same time, 
@@ -60,8 +61,8 @@ public class TechTree {
 					}
 					else {
 						//call tech/policy constructors with the extracted data
-						techs[n] = new Tech(tname, tflavor, tmods, tspec, tcost);
-						policies[n] = new Tech(pname, pflavor, pmods, pspec, pcost);
+						techs.add(new Tech(tname, tflavor, tmods, tspec, tcost));
+						policies.add(new Tech(pname, pflavor, pmods, pspec, pcost));
 						i = 0;
 						n++;
 					}
@@ -88,21 +89,21 @@ public class TechTree {
 	}
 	
 	//getter/setters
-	public int getTechLevel(int n) {return techs[n].getLevel();}
+	public int getTechLevel(int n) {return techs.get(n).getLevel();}
 	
-	public double getTechMod(int n) {return techs[n].getModifier();}
+	public double getTechMod(int n) {return techs.get(n).getModifier();}
 	
-	public long getTechCost(int n) {return techs[n].getCost();}
+	public long getTechCost(int n) {return techs.get(n).getCost();}
 	
-	public boolean upgradeTech(int n) {return policies[n].upgrade();}
+	public boolean upgradeTech(int n) {return techs.get(n).upgrade();}
 	
-	public int getPolLevel(int n) {return policies[n].getLevel();}
+	public int getPolLevel(int n) {return policies.get(n).getLevel();}
 	
-	public double getPolMod(int n) {return policies[n].getModifier();}
+	public double getPolMod(int n) {return policies.get(n).getModifier();}
 	
-	public long getPolicyCost(int n) {return techs[n].getCost();}
+	public long getPolicyCost(int n) {return policies.get(n).getCost();}
 	
-	public boolean upgradePolicy(int n) {return policies[n].upgrade();}
+	public boolean upgradePolicy(int n) {return policies.get(n).upgrade();}
 	
 	
 	
