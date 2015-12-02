@@ -16,7 +16,7 @@ public class Country {
 	Government gov;
 	Population pop;
 	String name;
-	double density;
+	double density, troPop;
 	boolean owned, hasAgent;
 	boolean orgSuppRevolt, orgFighting, orgProp;
 	//troops, size, and pop in thousands
@@ -32,6 +32,7 @@ public class Country {
 		techLevel = t;
 		pop = po;
 		gov = g;
+		troPop = ((double) soldiers)/((double) p);
 	}
 	
 	public void starter() {
@@ -40,11 +41,16 @@ public class Country {
 		gov.orgSupport = 1;
 	}
 	
-	void suppressUpdate() {
-		pop.suppression += (((double) techLevel)/5 + gov.ideo.auth + gov.ideo.mili +
-				((double) troops)/1000 + gov.cohesion) / 10;
-		if (pop.inRevolt) {
-			pop.suppression += ((double) troops)/1000 + gov.ideo.mili;
+	void suppressUpdate(boolean inDecay) {
+		if (!inDecay) {
+			pop.suppression += (((double) techLevel)/5 + gov.ideo.auth + gov.ideo.mili +
+				((double) troops)/1000 + gov.cohesion/2)/10;
+			if (pop.inRevolt) {
+				pop.suppression += ((double) troops)/1000 + gov.ideo.mili;
+			}
+		}
+		else {
+			pop.suppression -= (pop.revolt/(gov.cohesion))/(4 + troPop);
 		}
 	}
 	
@@ -76,13 +82,20 @@ public class Country {
 		}
 		
 		// Suppression chance
-		if (Math.random() > (pop.revolt + Math.pow(gov.ideo.mili, 3)) || pop.inRevolt) {
-			suppressUpdate();
+		if ((Math.random() > (pop.revolt + Math.pow(gov.ideo.mili, 3)) || 
+				pop.inRevolt) && pop.suppression <= 1) {
+			suppressUpdate(false);
+		}
+		else {
+			suppressUpdate(true);
 		}
 		
 		// Send in the troops if in revolt
 		
+		
+		
 		//
+		
 		
 		// Ideological drift from propaganda
 		if (orgProp) {
