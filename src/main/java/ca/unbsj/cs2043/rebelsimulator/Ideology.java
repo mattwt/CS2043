@@ -66,20 +66,16 @@ public class Ideology {
 			case 5: name = "Libertarian";
 				shName = "liber";
 				//free market, small government
+				auth = -0.7;
+				right = 0.4;
+				mili = -0.3;
+				trad = -0.8;
 				break;
-			case 6: name = "Environmentalist";
-				shName = "envir";
-				//
-				break;
-			case 7: name = "Reactionary";
+			case 6: name = "Reactionary";
 				shName = "react";
 				//wants to roll back reform, similar to religious
 				break;
-			case 8: name = "Religious";
-				shName = "relig";
-				//highly traditional, support a single religion
-				break;
-			case 9: name = "Neoliberal";
+			case 7: name = "Neoliberal";
 				shName = "nelib";
 				//free market, expansionist
 				auth = 0.82;

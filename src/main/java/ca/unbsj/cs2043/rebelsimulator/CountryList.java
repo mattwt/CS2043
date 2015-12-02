@@ -229,9 +229,20 @@ public class CountryList implements Iterable<Country> {
 							
 							if (pop > 0 && size > 0 && troops >= 0 && tech > 0 && 
 									br >= 0 && rp >= 0 && su >= 0 && gs >= 0 && coh >= 0) {
-								population = new Population(br, rp, su, gs, pide, "", pa, pr, pm, pt);
-								government = new Government(gide, "", coh, su, ga, gr, gm, gt);
-								cList.add(new Country(name, troops, size, pop, tech, government, population));
+								if (pa >= -1 && pa <= 1 && pr >= -1 && pr <= 1 && pm >= -1 && pm <= 1 &&
+										pt >= -1 && pt <= 1 && pide == 1 && gide == 1) {
+									population = new Population(br, rp, su, gs, pide, "", pa, pr, pm, pt);
+									government = new Government(gide, "", coh, su, ga, gr, gm, gt);
+									cList.add(new Country(name, troops, size, pop, tech, government, population));
+								}
+								else if (pide > 1 && pide <= 7 && gide > 1 && gide <= 7) {
+									population = new Population(br, rp, su, gs, pide, "", pa, pr, pm, pt);
+									government = new Government(gide, "", coh, su, ga, gr, gm, gt);
+									cList.add(new Country(name, troops, size, pop, tech, government, population));
+								}
+								else {
+									throw new IOException();
+								}
 							}
 							else {
 								throw new IOException();
@@ -241,6 +252,7 @@ public class CountryList implements Iterable<Country> {
 							pop = size = troops = tech = 0;
 							pide = gide = -1;
 							br = rp = su = gs = coh = -1;
+							pa = pr = pm = pt = 100;
 							ga = gr = gm = gt = 100;
 						}
 						else {

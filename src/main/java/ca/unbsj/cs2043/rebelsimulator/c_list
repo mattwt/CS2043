@@ -4,12 +4,12 @@
 	size = 9857;
 	troops = 1361;
 	tech = 10;
-	pide = 9;
+	pide = 7;
 	br = 0.25;
 	rp = 0.8;
 	su = 0.4;
 	gs = 0.8;
-	gide = 9;
+	gide = 7;
 	coh = 0.85;
 }
 :North Korea
