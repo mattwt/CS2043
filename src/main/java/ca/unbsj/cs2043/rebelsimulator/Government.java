@@ -12,16 +12,20 @@ package ca.unbsj.cs2043.rebelsimulator;
 public class Government {
 	
 	Ideology ideo;
-	String name;
-	double support;
-	int ID;
+	double cohesion, orgSupport;
 	
-	public Government(Ideology d, String n, int id) {
-		ideo = d;
-		name = n;
-		ID = id;
+	public Government(Ideology i, String n, double c, double s) {
+		ideo = i;
+		cohesion = c;
+		orgSupport = s;
 	}
 	
+	public Government(int id, String un, double c, double s,
+			double a, double r, double m, double t) {
+		ideo = new Ideology(id, un, a, r, m, t);
+		cohesion = c;
+		orgSupport = s;
+	}
 	
 	
 }

@@ -1,0 +1,182 @@
+:Central Africa
+{
+	pop = 140000;
+	size = 6613;
+	troops = 1039;
+	tech = 2;
+	pide = 9;
+	br = 0.4;
+	rp = 0.43;
+	su = 0.5;
+	gs = 0.2;
+	gide = 9;
+	coh = 0.65;
+}
+:Central America
+{
+	pop = 409000;
+	size = 17840;
+	troops = 816;
+	tech = 6;
+	pide = 9;
+	br = 0.3;
+	rp = 0.48;
+	su = 0.4;
+	gs = 0.5;
+	gide = 9;
+	coh = 0.75;
+}
+:China
+{
+	pop = 2654000;
+	size = 12927;
+	troops = 11695;
+	tech = 7;
+	pide = 8;
+	br = 0.3;
+	rp = 0.34;
+	su = 0.66;
+	gs = 0.8;
+	gide = 2;
+	coh = 0.77;
+}
+:European Union
+{
+	pop = 599450;
+	size = 5973;
+	troops = 1268;
+	tech = 9;
+	pide = 8;
+	br = 0.35;
+	rp = 0.31;
+	su = 0.2;
+	gs = 0.75;
+	gide = 8;
+	coh = 0.9;
+}
+:Madagascar
+{
+	pop = 23200;
+	size = 587;
+	troops = 12;
+	tech = 4;
+	pide = 9;
+	br = 0.25;
+	rp = 0.41;
+	su = 0.5;
+	gs = 0.6;
+	gide = 6;
+	coh = 0.7;
+}
+:Middle East
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}
+:North Africa
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}
+:North America
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}
+:Oceania
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}
+:Russia
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}
+:South Africa
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}
+:South America
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}
+:South East Asia
+{
+	pop = 24895;
+	size = 120;
+	troops = 1106;
+	tech = 5;
+	pide = 2;
+	br = 0.4;
+	rp = 0.2;
+	su = 0.9;
+	gs = 0.7;
+	gide = 2;
+	coh = 0.8;
+}

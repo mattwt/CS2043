@@ -11,50 +11,29 @@ package ca.unbsj.cs2043.rebelsimulator;
  */
 public class Population {
 	
-	Government gov;
-	Country con;
 	Ideology ideo;
-	String name;
-	double baseRevolt, revolt, popAmt, richPoor, support;
+	double baseRevolt, revolt, richPoor, govSupport, orgSupport, suppression;
 	boolean inRevolt = false;
-	boolean isSuppressed = false;
+	boolean orgRevolt = false;
 	
-	public Population(Ideology i, Government g, Country c, String n, 
-			double br, double r, double pa, double ly, double s, double rp) {
-		ideo = i; gov = g; con = c; 
-		name = n; baseRevolt = br; popAmt = pa; richPoor = rp;	//seperate calc for these??
-		//calc(r);
+	public Population(double br, double rp, double su, double gs, 
+			int id, String un, double auth, double right, double trad, double mili) {
+		ideo = new Ideology(id, un, auth, right, mili, trad);
+		baseRevolt = br;
+		richPoor = rp;
+		suppression = su;
+		govSupport = gs;
+		//calc();
 	}
 	
-	public void calc(double rev) {
-		if (!inRevolt && revolt > 0.5) {
-			if ((Math.pow(revolt * Math.random(), 4)) > revolt) {
-				inRevolt = true;
-			}
-		}
-		else if (inRevolt) {	//50% chance of ending every tick
-			if ((Math.random() > 0.75)) {
-				inRevolt = false;
-			}
-		}
-		
-		//calcSupport();
-		//calcRevolt();
-		
+	public Population(Ideology i, double br, double rp, double su, double gs) {
+		ideo = i;
+		baseRevolt = br;
+		richPoor = rp;
+		suppression = su;
+		govSupport = gs;
+		//calc();
 	}
 	
-	public void calcSupport() {
-		double df = ideo.diff(gov.ideo);
-		support = df + richPoor;
-		
-	}
 	
-	public void calcRevolt() {
-		
-	}
-	
-	public double getRevolt() {return revolt;}
-	
-	public double getSupport() {return support;}
-		
 }
