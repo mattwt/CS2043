@@ -17,10 +17,12 @@ import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
+/*
 import com.jgoodies.forms.layout.FormLayout;
 import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 import com.jgoodies.forms.layout.FormSpecs;
+*/
 import javax.swing.JTextField;
 import javax.swing.JLayeredPane;
 

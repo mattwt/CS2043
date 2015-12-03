@@ -240,7 +240,7 @@ public class CountryList implements Iterable<Country> {
 									government = new Government(gide, "", coh, su, ga, gr, gm, gt);
 									cList.add(new Country(name, troops, size, pop, tech, government, population));
 								}
-								else if (pide > 1 && pide <= 7 && gide > 1 && gide <= 7) {
+								else if (pide > 1 && pide <= 9 && gide > 1 && gide <= 9) {
 									population = new Population(br, rp, su, gs, pide, "", pa, pr, pm, pt);
 									government = new Government(gide, "", coh, su, ga, gr, gm, gt);
 									cList.add(new Country(name, troops, size, pop, tech, government, population));
