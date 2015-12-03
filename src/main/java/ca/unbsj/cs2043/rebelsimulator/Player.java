@@ -7,7 +7,7 @@ package ca.unbsj.cs2043.rebelsimulator;
 
 /**
  *
- * @author Zach
+ * @author CK
  */
 public class Player {
 	
