@@ -54,6 +54,9 @@ public class Organization {
 		return success;
 	}
 	
+	public String getTechName(int id) {return techTree.getTechName(id);}
+	public String getPolicyName(int id) {return techTree.getPolicyName(id);}
+	
 	public double getTechMod(int id) {return techTree.getTechMod(id);}
 	public double getPolMod(int id) {return techTree.getPolMod(id);}
 	

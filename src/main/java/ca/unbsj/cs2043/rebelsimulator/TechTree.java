@@ -36,8 +36,15 @@ public class TechTree {
 				tline = brt.readLine();
 				pline = brp.readLine();
 				//System.out.println("tline: " + tline + ", pline: " + pline);
-				
-				if (tline != null && pline != null) {
+
+				if (((tline == null && pline == null) || 
+					(tline.equals("") && pline.equals(""))) && i > flavorLength) {
+					techs.add(new Tech(tname, tflavor, tmods, tcost));
+					policies.add(new Tech(pname, pflavor, pmods, pcost));
+					i = 0;
+					n++;
+				}
+				else if (tline != null && pline != null) {
 					if (i == 0) {
 						tname = tline;
 						pname = pline;
@@ -64,6 +71,7 @@ public class TechTree {
 						//System.out.println("tcost: " + tcost[i-1] + ", pcost: " + pcost[i-1]);
 						i++;
 					}
+					/*
 					else {
 						//call tech/policy constructors with the extracted data
 						techs.add(new Tech(tname, tflavor, tmods, tcost));
@@ -71,6 +79,7 @@ public class TechTree {
 						i = 0;
 						n++;
 					}
+					*/
 				}
 				else {
 					hasNext = false;
@@ -98,20 +107,16 @@ public class TechTree {
 	}
 	
 	//getter/setters
+	public String getTechName(int n) {return techs.get(n).name;}
 	public int getTechLevel(int n) {return techs.get(n).getLevel();}
-	
 	public double getTechMod(int n) {return techs.get(n).getModifier();}
-	
 	public long getTechCost(int n) {return techs.get(n).getCost();}
-	
 	public boolean upgradeTech(int n) {return techs.get(n).upgrade();}
 	
+	public String getPolicyName(int n) {return policies.get(n).name;}
 	public int getPolLevel(int n) {return policies.get(n).getLevel();}
-	
 	public double getPolMod(int n) {return policies.get(n).getModifier();}
-	
 	public long getPolicyCost(int n) {return policies.get(n).getCost();}
-	
 	public boolean upgradePolicy(int n) {return policies.get(n).upgrade();}
 	
 	
