@@ -56,7 +56,7 @@ public class Country {
 	}
 	
 	void updateRevolt() {
-		pop.revolt += gov.ideo.diff(pop.ideo) + 1;
+		pop.revolt += (gov.ideo.diff(pop.ideo)/6 + pop.richPoor) - (pop.suppression + pop.govSupport)/2;
 	}
 	
 	public void govSupport(double mod, Ideology i) {
@@ -102,7 +102,7 @@ public class Country {
 		}
 		
 		// Are we in revolt?
-		if (Math.random() > pop.revolt) {
+		if (Math.random() > pop.revolt/2) {
 			pop.inRevolt = true;
 		}
 		
@@ -116,8 +116,14 @@ public class Country {
 		}
 		
 		// Send in the troops if in revolt
-		
-		
+		if (pop.inRevolt) {
+			troops -= (((double) population)/((double) troops))/(techLevel/5*Math.random());
+			gov.cohesion -= 0.02;
+			if (Math.random() > (gov.ideo.mili+1)/2) {
+				troops -= (((double) population)/((double) troops))/(techLevel/6*Math.random());
+				pop.revolt -= (double) troPop*(techLevel/9);
+			}
+		}
 		
 		// Possibility to detect agent
 		double detChance = (((double) techLevel)/10 + gov.cohesion/4)*(0.5-o.getPolMod(1));
