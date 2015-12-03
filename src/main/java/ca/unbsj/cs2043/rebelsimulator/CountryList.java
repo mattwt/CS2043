@@ -39,7 +39,7 @@ public class CountryList implements Iterable<Country> {
 			errorCode = 1;
 			while (hasNext) {
 				line = cbr.readLine();
-				System.out.println("cline: " + line);
+				//System.out.println("cline: " + line);
 				errorCode = 2;
 				if (line == null) {
 					hasNext = false;
@@ -64,10 +64,10 @@ public class CountryList implements Iterable<Country> {
 							String param, data;
 							int eq = line.indexOf('=');
 							int semi = line.indexOf(';');
-							System.out.println("(eq: " + eq + ", semi: " + semi + ")");
+							//System.out.println("(eq: " + eq + ", semi: " + semi + ")");
 							param = line.substring(0, eq).trim();
 							data = line.substring(eq+1, semi).trim();
-							System.out.println("(param: " + param + ", data: " + data + ")");
+							//System.out.println("(param: " + param + ", data: " + data + ")");
 							
 							// assigning data to its proper parameter in constructor
 							errorCode = 6;
