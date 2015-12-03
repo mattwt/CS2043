@@ -32,10 +32,10 @@ public class TechTree {
 			
 			int i = 0, n = 0;
 			while (hasNext) {
-				System.out.println(n + " " + i);
+				//System.out.println(n + " " + i);
 				tline = brt.readLine();
 				pline = brp.readLine();
-				System.out.println("tline: " + tline + ", pline: " + pline);
+				//System.out.println("tline: " + tline + ", pline: " + pline);
 				
 				if (tline != null && pline != null) {
 					if (i == 0) {
@@ -51,17 +51,17 @@ public class TechTree {
 						psemicolon = pline.indexOf(";");
 						ttilde = tline.indexOf("~");
 						ptilde = pline.indexOf("~");
-						System.out.println("tsc: " + tsemicolon + ", psc: " + psemicolon + 
-								"\ntt: " + ttilde + ", ptt: " + ptilde);
+						//System.out.println("tsc: " + tsemicolon + ", psc: " + psemicolon + 
+						//		"\ntt: " + ttilde + ", ptt: " + ptilde);
 						tflavor[i-1] = tline.substring(0, tsemicolon);
 						pflavor[i-1] = pline.substring(0, psemicolon);
-						System.out.println("tflavor: " + tflavor[i-1] + ", pflavor: " + pflavor[i-1]);
+						//System.out.println("tflavor: " + tflavor[i-1] + ", pflavor: " + pflavor[i-1]);
 						tmods[i-1] = Double.parseDouble(tline.substring(tsemicolon+1, ttilde));
 						pmods[i-1] = Double.parseDouble(pline.substring(psemicolon+1, ptilde));
-						System.out.println("tmods: " + tmods[i-1] + ", pmods: " + pmods[i-1]);
+						//System.out.println("tmods: " + tmods[i-1] + ", pmods: " + pmods[i-1]);
 						tcost[i-1] = Long.parseLong(tline.substring(ttilde+1, tline.length()-1));
 						pcost[i-1] = Long.parseLong(pline.substring(ptilde+1, pline.length()-1));
-						System.out.println("tcost: " + tcost[i-1] + ", pcost: " + pcost[i-1]);
+						//System.out.println("tcost: " + tcost[i-1] + ", pcost: " + pcost[i-1]);
 						i++;
 					}
 					else {
