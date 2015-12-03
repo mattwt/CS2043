@@ -115,10 +115,10 @@ public class Ideology {
 	
 	public void recalcDrift(Ideology i, double strength) {
 		double difference = diff(i);
-		auth = auth + (strength * i.auth) - difference/2;
-		right = right + (strength * i.right) - difference/2;
-		mili = mili + (strength * i.mili) - difference/2;
-		trad = trad + (strength * i.trad) - difference/2;
+		auth = auth + (strength * i.auth) - difference/4;
+		right = right + (strength * i.right) - difference/4;
+		mili = mili + (strength * i.mili) - difference/4;
+		trad = trad + (strength * i.trad) - difference/4;
 	}
 	
 	public double diff(Ideology i) {
